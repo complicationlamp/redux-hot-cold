@@ -20,5 +20,17 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "description": "[GitHub](https://github.com/Thinkful-Ed/react-hot-cold)",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thinkful-Ed/react-hot-cold.git"
+  },
+  "author": "KJL",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Thinkful-Ed/react-hot-cold/issues"
+  },
+  "homepage": "https://github.com/Thinkful-Ed/react-hot-cold#readme"
 }
