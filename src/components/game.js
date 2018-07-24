@@ -4,6 +4,7 @@ import Header from './header';
 import GuessSection from './guess-section';
 import StatusSection from './status-section';
 import InfoSection from './info-section';
+import { connect } from 'net';
 
 export default class Game extends React.Component {
   constructor(props) {
@@ -101,3 +102,19 @@ export default class Game extends React.Component {
     );
   }
 }
+
+hotAndCold.defaultProps = {
+      guesses: [],
+      feedback: 'Make your guess!',
+      auralStatus: '',
+      correctAnswer: Math.round(Math.random() * 100) + 1
+}
+
+export const hotAndColdToProps = state => ({
+  guesses: state.guesses,
+  feedback: state.feedback,
+  auralStatus: state.auralStatus,
+  correctAnswer: state.correctAnswer
+});
+
+export default connect(hotAndColdToProps)(hotAndCold);
