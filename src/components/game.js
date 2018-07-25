@@ -11,7 +11,7 @@ class Game extends React.Component {
     super(props);
     this.state = {
       // guesses: [],
-      feedback: 'Make your guess!',
+      // feedback: 'Make your guess!',
       auralStatus: '',
       correctAnswer: Math.round(Math.random() * 100) + 1
     };
@@ -48,11 +48,9 @@ class Game extends React.Component {
       feedback = 'You got it!';
     }
 
-    this.setState({
-      feedback,
-      // guesses: [...this.state.guesses, guess]
-    });
+
     this.props.dispatch(actions.updateGuesses(guess));
+    this.props.dispatch(actions.feedback(feedback));
 
     // We typically wouldn't touch the DOM directly like this in React
     // but this is the best way to update the title of the page,
@@ -79,8 +77,8 @@ class Game extends React.Component {
   }
 
   render() {
-    const {guesses} = this.props;
-    const {feedback, auralStatus } = this.state;
+    const {guesses, feedback} = this.props;
+    const { auralStatus } = this.state;
     const guessCount = guesses.length;
 
     return (
