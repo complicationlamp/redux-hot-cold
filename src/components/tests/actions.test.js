@@ -3,10 +3,10 @@ import {feedback} from "../../actions";
 
 describe("ACTIONS", () => {
 	it("should create an action to return feedback")
-	const key = 0;
+	const text = "testing";
 	const expectedAction = {
 		type: FEEDBACK,
-		key
+		text
 	};
-	expect(feedback(key)).toEqual(expectedAction);
+	expect(feedback(text)).toEqual(expectedAction);
 })

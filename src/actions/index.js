@@ -3,9 +3,17 @@
 // makeGuess
 // generateAuralUpdate
  export const FEEDBACK = "FEEDBACK";
- export function feedback(key){
+ export function feedback(text) {
 	 return {
 		 type: FEEDBACK,
-		 key
+		 text
+	 };
+ }
+
+ export const UPDATE_GUESSES=  "UPDATE_GUESSES";
+ export function updateGuesses(guess) {
+	 return {
+		 type: UPDATE_GUESSES,
+		 guess
 	 };
  }

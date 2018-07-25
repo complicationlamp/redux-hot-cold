@@ -1,16 +1,16 @@
 import React from 'react';
-
+import * as actions from '../actions/index'
 import Header from './header';
 import GuessSection from './guess-section';
 import StatusSection from './status-section';
 import InfoSection from './info-section';
-import { connect } from 'net';
+import { connect } from 'react-redux';
 
-export default class Game extends React.Component {
+class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      guesses: [],
+      // guesses: [],
       feedback: 'Make your guess!',
       auralStatus: '',
       correctAnswer: Math.round(Math.random() * 100) + 1
@@ -50,8 +50,9 @@ export default class Game extends React.Component {
 
     this.setState({
       feedback,
-      guesses: [...this.state.guesses, guess]
+      // guesses: [...this.state.guesses, guess]
     });
+    this.props.dispatch(actions.updateGuesses(guess));
 
     // We typically wouldn't touch the DOM directly like this in React
     // but this is the best way to update the title of the page,
@@ -78,7 +79,8 @@ export default class Game extends React.Component {
   }
 
   render() {
-    const { feedback, guesses, auralStatus } = this.state;
+    const {guesses} = this.props;
+    const {feedback, auralStatus } = this.state;
     const guessCount = guesses.length;
 
     return (
@@ -103,18 +105,18 @@ export default class Game extends React.Component {
   }
 }
 
-hotAndCold.defaultProps = {
+Game.defaultProps = {
       guesses: [],
       feedback: 'Make your guess!',
       auralStatus: '',
       correctAnswer: Math.round(Math.random() * 100) + 1
 }
 
-export const hotAndColdToProps = state => ({
+export const GameToProps = state => ({
   guesses: state.guesses,
   feedback: state.feedback,
   auralStatus: state.auralStatus,
   correctAnswer: state.correctAnswer
 });
 
-export default connect(hotAndColdToProps)(hotAndCold);
+export default connect(GameToProps)(Game);
