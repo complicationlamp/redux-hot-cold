@@ -12,19 +12,18 @@ class Game extends React.Component {
     this.state = {
       // guesses: [],
       // feedback: 'Make your guess!',
-      auralStatus: '',
-      correctAnswer: Math.round(Math.random() * 100) + 1
+      // auralStatus: '',
+      // correctAnswer: Math.round(Math.random() * 100) + 1
     };
   }
 
   restartGame() {
-    this.setState({
-      guesses: [],
-      feedback: 'Make your guess!',
-      auralStatus: '',
-      correctAnswer: Math.floor(Math.random() * 100) + 1
-    });
-  }
+    const correctAnswerFormula = Math.floor(Math.random() * 100) + 1
+    this.props.dispatch(actions.resetGuesses())
+    this.props.dispatch(actions.feedback('Make your guess!'))
+    this.props.dispatch(actions.auralStatus(''))
+    this.props.dispatch(actions.correctAnswer(correctAnswerFormula))
+  };
 
   makeGuess(guess) {
     guess = parseInt(guess, 10);
@@ -33,7 +32,7 @@ class Game extends React.Component {
       return;
     }
 
-    const difference = Math.abs(guess - this.state.correctAnswer);
+    const difference = Math.abs(guess - this.props.correctAnswer);
 
     let feedback;
     if (difference >= 50) {
@@ -60,7 +59,7 @@ class Game extends React.Component {
   }
 
   generateAuralUpdate() {
-    const { guesses, feedback } = this.state;
+    const { guesses, feedback } = this.props;
 
     // If there's not exactly 1 guess, we want to
     // pluralize the nouns in this aural update.
@@ -73,12 +72,11 @@ class Game extends React.Component {
     }
 
 
-    this.setState({ auralStatus });
+    this.props.dispatch(actions.auralStatus(auralStatus));
   }
 
   render() {
-    const {guesses, feedback} = this.props;
-    const { auralStatus } = this.state;
+    const {guesses, feedback, auralStatus, correctAnswer} = this.props;
     const guessCount = guesses.length;
 
     return (

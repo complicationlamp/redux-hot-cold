@@ -11,6 +11,13 @@
 	 };
  }
 
+ export const RESET_GUESSES= "RESET_GUESSES";
+ export function resetGuesses() {
+	 return {
+		 type: RESET_GUESSES
+	 };
+ }
+
  export const FEEDBACK = "FEEDBACK";
  export function feedback(text) {
 	 return {
@@ -19,7 +26,17 @@
 	 };
  }
  export const AURAL_STATUS = "AURAL_STATUS";
- export function auralStatus(/* */)
+ export function auralStatus(auralStatus) {
+	 return {
+		 type: AURAL_STATUS,
+		 auralStatus
+	 };
+ }
 
  export const CORRECT_ANSWER ="CORRECT_ANSWER";
- EXPORT function correctAnswer(/*  */)
+ export function correctAnswer(correctAnswer) {
+	 return{
+		 type: CORRECT_ANSWER,
+		 correctAnswer
+	 };
+ }
